@@ -3,113 +3,148 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Menu, X, Phone, Mail, Heart, Search, ChevronRight } from "lucide-react";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [searchActive, setSearchActive] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { name: "Home", href: "/" },
+    { name: "Our Work", href: "/our-work" },
+    { name: "Gallery", href: "/gallery" },
+    { name: "Donors", href: "/donors" },
     { name: "About Us", href: "/about" },
-    { name: "Programs", href: "/programs" },
-    { name: "Contact", href: "/contact" },
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow-sm border-b border-rose-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20">
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative h-30 w-30 overflow-hidden rounded-lg transition-transform group-hover:scale-110">
-                <Image
-                  src="/mahila.png"
-                  alt="Pukar Mahila Mandal Logo"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <span className="text-2xl font-bold tracking-tight text-teal-700">
-                Pukar <span className="text-rose-600">Mahila Mandal</span>
-              </span>
-            </Link>
+    <header className={`fixed top-0 w-full z-[100] transition-all duration-300`}>
+      {/* --- TOP BAR --- */}
+      <div className={`bg-teal-950 text-zinc-300 py-1.5 hidden md:block border-b border-white/5 transition-all duration-500 ${isScrolled ? "h-0 opacity-0 overflow-hidden" : "h-auto opacity-100"}`}>
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center text-[10px] font-bold uppercase tracking-wider">
+          <div className="flex gap-6">
+            <a href="tel:+910000000000" className="flex items-center gap-1.5 hover:text-rose-400 transition-colors"><Phone size={10} /> +91 000 000 0000</a>
+            <a href="mailto:info@pukarmandal.org" className="flex items-center gap-1.5 hover:text-rose-400 transition-colors"><Mail size={10} /> info@pukarmandal.org</a>
           </div>
-
-          {/* Desktop Links */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`relative font-medium transition-colors hover:text-rose-600 ${
-                    isActive ? "text-rose-600" : "text-gray-600"
-                  }`}
-                >
-                  {link.name}
-                  {isActive && (
-                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-rose-600 rounded-full" />
-                  )}
-                </Link>
-              );
-            })}
-            <Link
-              href="/contact"
-              className="bg-teal-700 text-white px-6 py-2.5 rounded-full font-semibold hover:bg-teal-800 transition-all shadow-md hover:shadow-lg"
-            >
-              Support Us
+          <div className="flex items-center gap-5">
+            <div className="flex gap-3.5 border-r border-white/10 pr-5">
+              <Link href="#" className="hover:text-rose-400 transition-all"><FaFacebook size={12} /></Link>
+              <Link href="#" className="hover:text-rose-400 transition-all"><FaInstagram size={12} /></Link>
+              <Link href="#" className="hover:text-rose-400 transition-all"><FaTwitter size={12} /></Link>
+            </div>
+            <Link href="/donate" className="text-rose-400 hover:text-rose-300 flex items-center gap-1 group">
+              <Heart size={10} fill="currentColor" className="group-hover:scale-110 transition-transform" /> 80G Benefits
             </Link>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-600 hover:text-rose-600 focus:outline-none transition-colors"
-            >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-white border-t border-rose-100 py-4 px-4 space-y-2">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
+      {/* --- MAIN NAV --- */}
+      <nav className={`transition-all duration-300 ${isScrolled ? "bg-white/95 backdrop-blur-md shadow-md py-2" : "bg-white py-4"} border-b border-zinc-100`}>
+        <div className="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
+          
+          {/* Logo */}
+          <Link href="/" className="relative h-12 w-12 md:h-14 md:w-14 hover:scale-105 transition-transform">
+            <Image src="/mahila.png" alt="Pukar Logo" fill className="object-contain" priority />
+          </Link>
+
+          {/* Desktop Links  */}
+          <div className="hidden lg:flex items-center gap-1">
+            {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                onClick={() => setIsOpen(false)}
-                className={`block px-3 py-2 rounded-md font-medium transition-colors ${
-                  isActive
-                    ? "text-rose-600 bg-rose-50"
-                    : "text-gray-600 hover:text-rose-600 hover:bg-rose-50"
+                className={`px-4 py-2 rounded-full text-[12px] font-extrabold uppercase tracking-widest transition-all ${
+                  pathname === link.href ? "text-rose-600 bg-rose-50" : "text-zinc-500 hover:text-teal-950 hover:bg-zinc-50"
                 }`}
               >
                 {link.name}
               </Link>
-            );
-          })}
-          <Link
-            href="/contact"
-            onClick={() => setIsOpen(false)}
-            className="block w-full text-center bg-teal-700 text-white px-6 py-3 rounded-xl font-semibold hover:bg-teal-800 mt-4"
-          >
-            Support Us
-          </Link>
+            ))}
+            
+            <div className="flex items-center gap-3 ml-2 pl-5 border-l border-zinc-100">
+              <button 
+                onClick={() => setSearchActive(!searchActive)}
+                className="p-2 text-zinc-400 hover:text-teal-900 transition-colors"
+              >
+                <Search size={18} />
+              </button>
+              <Link
+                href="/donate"
+                className="bg-rose-600 text-white px-6 py-2.5 rounded-full font-extrabold text-[11px] hover:bg-teal-950 shadow-md shadow-rose-100 hover:shadow-teal-100 transition-all flex items-center gap-2"
+              >
+                <Heart size={14} /> DONATE
+              </Link>
+            </div>
+          </div>
+
+          {/* Mobile Toggle */}
+          <div className="flex items-center gap-3 lg:hidden">
+            <button 
+               onClick={() => setSearchActive(!searchActive)}
+               className="p-2 text-zinc-500"
+            >
+              <Search size={22} />
+            </button>
+            <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-zinc-900 transition-colors">
+              {isOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
+          </div>
         </div>
-      )}
-    </nav>
+
+        {/* Search Overlay */}
+        {searchActive && (
+          <div className="absolute top-full left-0 w-full bg-white border-b border-zinc-100 p-4 animate-in slide-in-from-top duration-300 shadow-xl">
+            <div className="max-w-3xl mx-auto relative">
+              <input 
+                type="text" 
+                autoFocus
+                placeholder="Search programs or impact..." 
+                className="w-full bg-zinc-50 border-none rounded-xl py-3 px-5 outline-none focus:ring-2 ring-rose-500/10 font-medium text-sm" 
+              />
+              <button onClick={() => setSearchActive(false)} className="absolute right-4 top-2.5 text-zinc-400 hover:text-rose-500">
+                <X size={20} />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Mobile Menu - Refined text size and spacing */}
+        {isOpen && (
+          <div className="lg:hidden fixed inset-0 top-[65px] bg-white z-[90] p-5 flex flex-col gap-3 animate-in slide-in-from-right duration-300">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className={`flex justify-between items-center p-4 rounded-xl border border-transparent transition-all ${
+                  pathname === link.href ? "bg-rose-50 text-rose-600 border-rose-100" : "bg-zinc-50 text-teal-950"
+                } text-base font-extrabold`}
+              >
+                {link.name} <ChevronRight size={18} className="text-rose-500" />
+              </Link>
+            ))}
+            <Link 
+              href="/donate" 
+              onClick={() => setIsOpen(false)}
+              className="mt-4 w-full bg-rose-600 text-white p-4 rounded-2xl text-center font-extrabold text-lg shadow-lg active:scale-95 transition-transform"
+            >
+              DONATE NOW
+            </Link>
+          </div>
+        )}
+      </nav>
+    </header>
   );
 };
 

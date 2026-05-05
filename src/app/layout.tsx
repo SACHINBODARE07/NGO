@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -15,8 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pukar Mahila Mandal | Empowering Rural Maharashtra",
-  description: "Pukar Mahila Mandal is a Pune-based NGO dedicated to helping people in rural areas through health, education, and livelihood programs.",
+  title: "Pukar Mahila Mandal Guna | Empowering Rural Madhya Pradesh",
+  description:
+    "Pukar Mahila Mandal is a Guna-based NGO dedicated to empowering women through skill development, tailoring, soap making, and sustainable livelihood programs.",
 };
 
 export default function RootLayout({
@@ -30,9 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>

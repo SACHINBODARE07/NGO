@@ -1,93 +1,58 @@
-import { BookOpen, HeartPulse, Hammer, Scale, GraduationCap, Wheat } from "lucide-react";
+import { GraduationCap, Sprout, Gavel, HeartPulse, Factory, Users } from "lucide-react";
 
-export default function Programs() {
-  const programs = [
-    {
-      title: "Rural Education",
-      icon: GraduationCap,
-      description: "Setting up learning centers in remote villages of Pune to provide basic literacy and computer education to children and adults.",
-      color: "text-rose-600",
-      bg: "bg-rose-50",
-    },
-    {
-      title: "Health & Hygiene",
-      icon: HeartPulse,
-      description: "Organizing regular medical camps and distributing hygiene kits to women and families in underserved rural areas.",
-      color: "text-teal-700",
-      bg: "bg-teal-50",
-    },
-    {
-      title: "Skill Development",
-      icon: Hammer,
-      description: "Providing vocational training in tailoring, handicrafts, and sustainable farming to help rural women become financially independent.",
-      color: "text-rose-600",
-      bg: "bg-rose-50",
-    },
-    {
-      title: "Legal Awareness",
-      icon: Scale,
-      description: "Educating rural communities about their constitutional rights, land laws, and women's protection acts through workshops.",
-      color: "text-teal-700",
-      bg: "bg-teal-50",
-    },
-    {
-      title: "Sustainable Farming",
-      icon: Wheat,
-      description: "Teaching organic farming techniques and water conservation methods to small-scale farmers in rural Maharashtra.",
-      color: "text-rose-600",
-      bg: "bg-rose-50",
-    },
-    {
-      title: "Child Welfare",
-      icon: BookOpen,
-      description: "Supporting local schools with infrastructure development and providing nutritious meals to students from poor families.",
-      color: "text-teal-700",
-      bg: "bg-teal-50",
-    },
-  ];
+const programs = [
+  { 
+    title: "Garment Unit", 
+    desc: "A NABARD-supported initiative where women are trained in tailoring and garment manufacturing to generate local employment.",
+    icon: Sprout, 
+    tags: ["Livelihood", "NABARD"] 
+  },
+  { 
+    title: "Herbal Soap Making", 
+    desc: "Converting temple flower waste into organic soaps, promoting eco-friendly hygiene and sustainable income.",
+    icon: Factory, 
+    tags: ["Eco-Friendly", "Skill"] 
+  },
+  { 
+    title: "Legal Literacy", 
+    desc: "Camps focused on educating women about their rights, domestic laws, and community safety.",
+    icon: Gavel, 
+    tags: ["Rights", "Awareness"] 
+  },
+  { 
+    title: "Self-Help Groups", 
+    desc: "Managing 60+ SHGs to provide micro-finance support and bank linkage for small entrepreneurs.",
+    icon: Users, 
+    tags: ["Finance", "Trust"] 
+  }
+];
 
+export default function ProgramsPage() {
   return (
-    <div className="flex flex-col gap-24 pb-24">
-      {/* Header */}
-      <section className="bg-teal-700 py-24 text-white text-center">
-        <div className="container mx-auto px-4 max-w-7xl space-y-6">
-          <h1 className="text-4xl md:text-6xl font-black">Our Programs</h1>
-          <p className="text-xl text-teal-100 max-w-3xl mx-auto leading-relaxed">
-            Direct action for direct impact. We design our initiatives to solve real-world problems faced by people in rural Maharashtra.
-          </p>
+    <main className="pt-32 pb-20 bg-zinc-50">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="text-center mb-16 space-y-4">
+          <h1 className="text-4xl md:text-6xl font-black text-teal-950">Our Impact Areas</h1>
+          <p className="text-zinc-500 max-w-2xl mx-auto">Transforming lives through structured skill-building and direct community intervention.</p>
         </div>
-      </section>
 
-      {/* Program Grid */}
-      <section className="container mx-auto px-4 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {programs.map((program, i) => (
-            <div key={i} className={`${program.bg} p-10 rounded-[2.5rem] border border-zinc-100 flex flex-col gap-6 hover:shadow-2xl hover:shadow-zinc-200 transition-all group`}>
-              <div className="bg-white p-4 rounded-2xl w-fit shadow-sm group-hover:scale-110 transition-transform">
-                <program.icon className={`h-8 w-8 ${program.color}`} />
+        <div className="grid md:grid-cols-2 gap-8">
+          {programs.map((p, i) => (
+            <div key={i} className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all border border-zinc-100 flex gap-6">
+              <div className="hidden sm:flex bg-rose-50 text-rose-600 w-16 h-16 rounded-2xl items-center justify-center shrink-0">
+                <p.icon size={32} />
               </div>
-              <h3 className="text-2xl font-bold text-teal-800">{program.title}</h3>
-              <p className="text-zinc-600 leading-relaxed text-lg">
-                {program.description}
-              </p>
+              <div className="space-y-3">
+                <div className="flex gap-2">
+                  {p.tags.map(tag => <span key={tag} className="text-[10px] font-bold uppercase tracking-wider text-teal-600 bg-teal-50 px-2 py-1 rounded-md">{tag}</span>)}
+                </div>
+                <h3 className="text-2xl font-bold text-teal-950">{p.title}</h3>
+                <p className="text-zinc-600 leading-relaxed">{p.desc}</p>
+              </div>
             </div>
           ))}
         </div>
-      </section>
-
-      {/* Success Story / Quote */}
-      <section className="container mx-auto px-4 max-w-5xl">
-        <div className="bg-rose-600 p-12 md:p-20 rounded-[3rem] text-white text-center space-y-8 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full -ml-16 -mt-16" />
-          <h2 className="text-3xl md:text-4xl font-bold italic leading-tight">
-            "The change we see in the villages today is the result of years of consistent effort and the unwavering support of our donors."
-          </h2>
-          <div className="space-y-2">
-            <p className="font-bold text-xl">— Founder, Pukar Mahila Mandal</p>
-            <p className="text-rose-100">Pune, Maharashtra</p>
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </main>
   );
 }

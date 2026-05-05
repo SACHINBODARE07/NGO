@@ -1,89 +1,68 @@
-import { Target, Eye, Landmark, Award } from "lucide-react";
+"use client";
+
+import { Shield, Eye, Target } from "lucide-react";
 
 export default function About() {
   return (
-    <div className="flex flex-col gap-24 pb-24">
-      {/* Header */}
-      <section className="bg-rose-50 py-20 border-b border-rose-100">
-        <div className="container mx-auto px-4 max-w-7xl text-center space-y-6">
-          <h1 className="text-4xl md:text-6xl font-black text-teal-800">Our Story</h1>
-          <p className="text-xl text-zinc-600 max-w-3xl mx-auto leading-relaxed">
-            Founded in Pune, Pukar Mahila Mandal began with a simple vision: to ensure that no one in rural Maharashtra is left behind.
-          </p>
-        </div>
-      </section>
-
-      {/* History Section */}
-      <section className="container mx-auto px-4 max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <div className="space-y-6">
-          <h2 className="text-3xl font-bold text-teal-800">A Legacy of Care</h2>
-          <div className="h-1 w-20 bg-rose-600 rounded-full" />
-          <p className="text-zinc-600 text-lg leading-relaxed">
-            Over a decade ago, a group of dedicated women in Pune came together to address the pressing issues faced by rural communities. What started as a small support group has grown into a structured NGO that serves thousands across Maharashtra.
-          </p>
-          <p className="text-zinc-600 text-lg leading-relaxed">
-            We believe in grassroots empowerment. By working directly with village heads and local families, we ensure our programs are culturally relevant and truly impactful.
-          </p>
-          <div className="grid grid-cols-2 gap-6 pt-4">
-            <div className="bg-white p-6 rounded-2xl shadow-md border border-zinc-100">
-              <Landmark className="h-8 w-8 text-rose-600 mb-3" />
-              <h4 className="font-bold text-zinc-900">Pune Based</h4>
-              <p className="text-sm text-zinc-500 text-balance">Headquartered in Pune for efficient regional outreach.</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl shadow-md border border-zinc-100">
-              <Award className="h-8 w-8 text-teal-700 mb-3" />
-              <h4 className="font-bold text-zinc-900">10+ Years</h4>
-              <p className="text-sm text-zinc-500 text-balance">Over a decade of consistent service in rural areas.</p>
-            </div>
-          </div>
-        </div>
-        <div className="relative aspect-square md:aspect-auto md:h-full bg-zinc-100 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl">
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-200/50 to-teal-200/50" />
-          <div className="absolute inset-0 flex items-center justify-center p-12">
-            <p className="text-teal-800 font-serif text-3xl italic text-center leading-relaxed">
-              "Empowering a woman empowers a family, and empowering a family transforms a village."
+    <div className="pt-32 pb-24">
+      <div className="max-w-7xl mx-auto px-6">
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start mb-32">
+          <div className="space-y-8">
+            <h2 className="text-rose-600 font-bold text-xs uppercase tracking-[0.4em]">Our Story</h2>
+            <h1 className="text-5xl md:text-7xl font-black text-teal-950 tracking-tighter leading-none">A Voice for the <br /><span className="text-rose-600 italic">Unheard.</span></h1>
+            <p className="text-xl text-zinc-600 leading-relaxed font-medium">
+              Founded in 2017 in Guna, Madhya Pradesh, Pukar Mahila Mandal started as a small gathering of 10 women discussing local issues. Today, we represent a federation of over 2,500 women across the district.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Vision & Mission Cards */}
-      <section className="container mx-auto px-4 max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-teal-700 p-12 rounded-[2.5rem] text-white space-y-6">
-          <Target className="h-12 w-12 text-rose-400" />
-          <h2 className="text-3xl font-bold">Our Vision</h2>
-          <p className="text-teal-100 text-lg leading-relaxed">
-            To create a self-reliant rural Maharashtra where every individual has access to quality healthcare, education, and the opportunity to live a life of dignity and purpose.
-          </p>
-        </div>
-        <div className="bg-rose-600 p-12 rounded-[2.5rem] text-white space-y-6">
-          <Eye className="h-12 w-12 text-teal-200" />
-          <h2 className="text-3xl font-bold">Our Mission</h2>
-          <p className="text-rose-100 text-lg leading-relaxed">
-            To implement sustainable development programs that address the root causes of poverty and inequality in rural areas through direct intervention and community participation.
-          </p>
-        </div>
-      </section>
-
-      {/* Values */}
-      <section className="container mx-auto px-4 max-w-7xl text-center space-y-12">
-        <h2 className="text-3xl font-bold text-teal-800">Our Values</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
-          {[
-            { title: "Transparency", desc: "We maintain complete honesty in our operations and fund usage." },
-            { title: "Compassion", desc: "Every person we help is treated with the utmost respect and empathy." },
-            { title: "Resilience", desc: "We stay committed to our cause despite the challenges of rural outreach." },
-          ].map((value, i) => (
-            <div key={i} className="space-y-4">
-              <div className="h-12 w-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto text-xl font-bold">
-                {i + 1}
+          <div className="bg-zinc-50 p-10 rounded-[3rem] border border-zinc-100 space-y-10">
+            <div>
+              <div className="flex items-center gap-4 mb-4">
+                <Target className="text-rose-600" size={32} />
+                <h3 className="text-2xl font-black text-teal-950 uppercase text-sm tracking-widest">Our Mission</h3>
               </div>
-              <h4 className="text-xl font-bold text-zinc-900">{value.title}</h4>
-              <p className="text-zinc-500 leading-relaxed">{value.desc}</p>
+              <p className="text-zinc-500 font-medium">To create self-reliant rural communities where women lead the social and economic narrative through skills and education.</p>
             </div>
-          ))}
+            <div className="h-px bg-zinc-200" />
+            <div>
+              <div className="flex items-center gap-4 mb-4">
+                <Eye className="text-teal-600" size={32} />
+                <h3 className="text-2xl font-black text-teal-950 uppercase text-sm tracking-widest">Our Vision</h3>
+              </div>
+              <p className="text-zinc-500 font-medium">A society free of gender-based poverty where every rural household is an entrepreneur hub.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* --- LEGAL BOX --- */}
+        <div className="bg-teal-950 rounded-[3.5rem] p-12 md:p-20 text-white relative overflow-hidden">
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
+              <h4 className="text-3xl font-black tracking-tight">Radical Transparency</h4>
+              <p className="text-teal-100/60 font-medium leading-relaxed text-lg">
+                We are a fully compliant NGO registered under the Madhya Pradesh Societies Registration Act, 1973.
+              </p>
+              <div className="grid grid-cols-1 gap-4">
+                {[
+                  "Reg No: 02/40/01/21798/17",
+                  "80G & 12A Certified",
+                  "NITI Aayog Registered (NGO Darpan)",
+                  "CSR-01 Compliant"
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 font-bold text-sm bg-white/5 p-4 rounded-xl border border-white/10">
+                    <Shield className="text-rose-500" size={18} /> {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="aspect-square bg-white/5 rounded-full flex items-center justify-center border border-white/5 relative">
+               <div className="text-center">
+                  <span className="text-7xl font-black text-rose-500 block mb-2">100%</span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-teal-100">Donation Efficiency</span>
+               </div>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

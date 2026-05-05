@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Mail,
   Phone,
@@ -13,11 +14,16 @@ const Footer = () => {
     <footer className="bg-zinc-950 text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* About Section */}
+          {/* About Section with Logo only */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-rose-500">
-              Pukar Mahila Mandal
-            </h3>
+            <div className="relative h-30 w-30 overflow-hidden rounded-lg">
+              <Image
+                src="/mahila.png"
+                alt="Pukar Mahila Mandal Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
             <p className="text-zinc-400 leading-relaxed">
               Empowering communities in rural Maharashtra through education,
               health, and sustainable livelihood programs. Based in Pune,
@@ -43,6 +49,14 @@ const Footer = () => {
                   className="text-zinc-400 hover:text-rose-500 transition-colors"
                 >
                   About Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services"
+                  className="text-zinc-400 hover:text-rose-500 transition-colors"
+                >
+                  Services
                 </Link>
               </li>
               <li>
@@ -111,10 +125,21 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-zinc-800 pt-8 text-center text-zinc-500 text-sm">
-          <p>
-            © {new Date().getFullYear()} Pukar Mahila Mandal. All rights
-            reserved.
+        {/* Bottom section with copyright and powered by */}
+        <div className="border-t border-zinc-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+          <p className="text-zinc-500 text-sm">
+            © {new Date().getFullYear()} Pukar Mahila Mandal. All rights reserved.
+          </p>
+          <p className="uppercase tracking-wide text-[10px] text-zinc-500">
+            Powered by{" "}
+            <a
+              href="https://pigo-pi.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-extrabold text-violet-400 hover:text-violet-300 transition-colors normal-case"
+            >
+              PigoPi
+            </a>
           </p>
         </div>
       </div>

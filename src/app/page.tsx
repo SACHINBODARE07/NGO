@@ -4,27 +4,28 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { 
-  ArrowRight, Heart, ShieldCheck, CheckCircle2, 
-  Star, Megaphone, Info, Maximize2, 
-  ShoppingBag, BookOpen, Users
+  Play, Calendar, Tag, User, 
+  ArrowRight, Heart, ShieldCheck, CheckCircle2, Star,
+  ShoppingBag, BookOpen, Users, MapPin, BarChart3, Image as ImageIcon,
+  ChevronRight, Target, Zap, Info, Megaphone
 } from "lucide-react";
 
-// --- Hero Content ---
+// --- Carousel Content ---
 const slides = [
   { 
-     image: "/images/home/Fashion-Design-blog.jpg", 
+    image: "/images/home/Fashion-Design-blog.jpg", 
     title: "Empowering Rural Women, Changing Lives.", 
-    sub: "Pukar Mahila Mandal (Reg: 02/40/01/21798/17) is a grassroots movement in Guna, dedicated to sustainable livelihood since 2017." 
+    // sub: "Pukar Mahila Mandal (Reg: 02/40/01/21798/17) is a grassroots movement in Guna, dedicated to sustainable livelihood since 2017." 
   },
   { 
-   image: "/images/home/empowerment-of-women.jpg", 
+    image: "/images/home/image-8.webp", 
     title: "Economic Freedom Through Skill Training.", 
-    sub: "Establishing decentralized garment units to ensure rural women earn with dignity from their own villages." 
+    // sub: "Establishing decentralized garment units to ensure rural women earn with dignity from their own villages." 
   },
   { 
-    image: "/images/home/image-3.webp", 
+    image: "/images/home/Fashion-Design-blog.jpg", 
     title: "Legal Literacy and Social Excellence.", 
-    sub: "Bridging the gap between government welfare schemes and the women who need them most through education." 
+    // sub: "Bridging the gap between government welfare schemes and the women who need them most through education." 
   },
 ];
 
@@ -39,16 +40,31 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col bg-white pt-[72px] md:pt-[96px]">
+    <div className="flex flex-col bg-zinc-50 pt-[72px] md:pt-[96px] min-h-screen">
       
-      {/* --- SPLIT HERO: LEFT CONTENT, RIGHT IMAGE CAROUSEL (COMPACT) --- */}
-      <section className="relative w-full bg-gradient-to-br from-teal-50 via-white to-rose-50">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 py-8 md:py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            
-            {/* LEFT COLUMN: Text & Buttons (reduced sizes) */}
-            <div className="space-y-4 md:space-y-5">
-              <span className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-teal-200 text-teal-800 text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
+      {/* Hero Carousel */}
+      <section className="relative w-full h-[80vh] md:h-[80vh] overflow-hidden mt-4 md:mt-6">
+        {slides.map((slide, i) => (
+          <div 
+            key={i} 
+            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+              i === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105"
+            }`}
+          >
+            <Image
+              src={slide.image}
+              alt={slide.title}
+              fill
+              sizes="100vw"
+              quality={90}
+              priority={i === 0}
+              className="object-cover"
+            />
+            {/* Dark overlay for better text contrast */}
+            <div className="absolute inset-0 bg-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-teal-950/70 via-teal-950/30 to-transparent" />
+            <div className="relative h-full max-w-7xl mx-auto px-6 md:px-8 flex flex-col justify-center items-start space-y-4 md:space-y-6">
+              <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider hover:bg-white/20 transition-all">
                 <span className="relative flex h-1.5 w-1.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-rose-600"></span>
@@ -56,73 +72,32 @@ export default function Home() {
                 Registered NGO: Guna, Madhya Pradesh
               </span>
 
-              <h1 className="text-2xl md:text-4xl lg:text-5xl font-black text-teal-950 leading-tight">
-                {slides[currentSlide].title}
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight max-w-3xl drop-shadow-lg">
+                {slide.title}
               </h1>
               
-              <p className="text-zinc-600 text-sm md:text-base max-w-xl font-medium leading-relaxed">
-                {slides[currentSlide].sub}
-              </p>
-
-              <div className="flex flex-wrap gap-3 pt-2">
-                <Link href="/donate" className="bg-rose-600 hover:bg-rose-700 text-white px-6 py-2.5 rounded-lg font-bold text-xs md:text-sm transition-all flex items-center gap-2 shadow-md">
-                  Join the Movement <Heart size={16} />
-                </Link>
-                <Link href="/our-work" className="bg-white hover:bg-teal-950 hover:text-white text-teal-950 border border-teal-200 px-6 py-2.5 rounded-lg font-bold text-xs md:text-sm transition-all shadow-sm">
-                  Our Impact
-                </Link>
-              </div>
-
-              {/* Trust indicators (compact) */}
-              <div className="flex flex-wrap gap-4 pt-4">
-                <div className="flex items-center gap-1.5">
-                  <ShieldCheck size={16} className="text-rose-500" />
-                  <span className="text-[11px] font-bold text-teal-800">80G Certified</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <CheckCircle2 size={16} className="text-rose-500" />
-                  <span className="text-[11px] font-bold text-teal-800">NITI Aayog</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <Star size={16} className="text-rose-500" />
-                  <span className="text-[11px] font-bold text-teal-800">2,500+ Empowered</span>
-                </div>
-              </div>
-            </div>
-
-            {/* RIGHT COLUMN: Image Carousel (smaller, tighter) */}
-            <div className="relative rounded-2xl overflow-hidden shadow-lg border-2 border-white">
-              <div className="aspect-[4/3] relative bg-zinc-100">
-                <Image
-                  src={slides[currentSlide].image}
-                  alt={slides[currentSlide].title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  quality={85}
-                  priority
-                  className="object-cover"
-                />
-              </div>
-              
-              {/* Carousel dots (smaller) */}
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 bg-white/80 backdrop-blur-sm px-2 py-1.5 rounded-full shadow-md">
-                {slides.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentSlide(i)}
-                    className={`h-1.5 rounded-full transition-all ${
-                      i === currentSlide ? "w-5 bg-rose-600" : "w-1.5 bg-teal-300"
-                    }`}
-                  />
-                ))}
-              </div>
+              {/* <p className="text-white/90 text-sm md:text-base max-w-xl font-medium leading-relaxed drop-shadow">
+                {slide.sub}
+              </p> */}
             </div>
           </div>
+        ))}
+        
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentSlide(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 hover:scale-125 ${
+                i === currentSlide ? "w-8 bg-rose-500" : "w-2 bg-white/50 hover:bg-white"
+              }`}
+            />
+          ))}
         </div>
       </section>
 
-      {/* --- TRUST BAR (unchanged) --- */}
-      <section className="py-10 bg-white border-b border-zinc-100">
+      {/* Trust Bar  */}
+      <section className="py-8 bg-white border-b border-zinc-100">
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             { t: "80G Certified", d: "Tax Benefits", i: ShieldCheck },
@@ -130,12 +105,12 @@ export default function Home() {
             { t: "CSR-01", d: "Regd. NGO", i: Info },
             { t: "2,500+", d: "Women Empowered", i: Star },
           ].map((item, idx) => (
-            <div key={idx} className="flex items-center gap-3 group">
-              <div className="bg-zinc-50 p-2.5 rounded-xl shadow-sm text-rose-500 group-hover:bg-rose-600 group-hover:text-white transition-all">
+            <div key={idx} className="flex items-center gap-3 group cursor-pointer">
+              <div className="bg-zinc-50 p-2.5 rounded-xl shadow-sm text-rose-500 group-hover:bg-rose-600 group-hover:text-white transition-all group-hover:scale-110">
                 <item.i size={20} />
               </div>
               <div>
-                <h4 className="font-extrabold text-teal-950 text-xs md:text-sm">{item.t}</h4>
+                <h4 className="font-extrabold text-teal-950 text-xs md:text-sm group-hover:text-rose-600 transition-colors">{item.t}</h4>
                 <p className="text-[9px] uppercase font-bold text-zinc-400 tracking-wider">{item.d}</p>
               </div>
             </div>
@@ -143,105 +118,198 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- CORE PROGRAMS (unchanged) --- */}
-      <section className="py-20 max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16 space-y-3">
-          <h2 className="text-rose-600 font-bold text-xs uppercase tracking-[0.3em]">Our Focus</h2>
-          <h3 className="text-3xl md:text-4xl font-black text-teal-950 tracking-tight">Core Programs</h3>
-        </div>
+      {/* 1. DYNAMIC RESOURCE HERO SECTION */}
+      <section className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-10 w-full">
+        <div className="bg-[#dbeafe] rounded-2xl md:rounded-3xl lg:rounded-[3rem] p-5 md:p-8 lg:p-10 border-2 border-[#bfdbfe] shadow-sm hover:shadow-xl transition-all duration-500">
+          <div className="flex gap-2 mb-6 md:mb-8">
+            {["home", "resources", "videos"].map((tab) => (
+              <span key={tab} className="px-3 md:px-4 py-1 bg-zinc-600 text-white text-[10px] font-bold rounded-full uppercase tracking-widest cursor-default hover:bg-rose-600 transition-colors">
+                {tab}
+              </span>
+            ))}
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            { 
-              title: "Livelihood Units", 
-              desc: "Establishing village-based garment units that provide consistent work and fair wages to rural women.",
-              icon: ShoppingBag,
-              color: "bg-teal-50 text-teal-600"
-            },
-            { 
-              title: "Legal Awareness", 
-              desc: "Training 'Pukar Sahayikas' to educate women about their constitutional rights and government schemes.",
-              icon: BookOpen,
-              color: "bg-rose-50 text-rose-600"
-            },
-            { 
-              title: "Social Excellence", 
-              desc: "Building Area Level Federations (ALFs) to promote leadership and community-driven social change.",
-              icon: Users,
-              color: "bg-teal-50 text-teal-600"
-            }
-          ].map((program, idx) => (
-            <div key={idx} className="bg-white p-8 rounded-3xl border border-zinc-100 hover:border-rose-200 hover:shadow-xl hover:shadow-rose-100 transition-all group">
-              <div className={`w-12 h-12 ${program.color} rounded-xl flex items-center justify-center mb-6`}>
-                <program.icon size={24} />
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+            {/* LEFT COLUMN */}
+            <div className="w-full lg:w-1/3 space-y-6">
+              <div className="relative aspect-[4/5] rounded-2xl md:rounded-3xl lg:rounded-[2.5rem] overflow-hidden border-4 border-white shadow-2xl group">
+                {slides.map((slide, i) => (
+                  <Image 
+                    key={i}
+                    src={slide.image} 
+                    alt="Spotlight" 
+                    fill 
+                    className={`object-cover transition-opacity duration-1000 group-hover:scale-105 ${i === currentSlide ? "opacity-100" : "opacity-0"}`}
+                  />
+                ))}
               </div>
-              <h4 className="text-xl font-black text-teal-950 mb-3">{program.title}</h4>
-              <p className="text-zinc-500 text-sm leading-relaxed font-medium">{program.desc}</p>
+
+              <div className="bg-white rounded-2xl md:rounded-3xl lg:rounded-[2.5rem] border-4 border-[#3b82f6] overflow-hidden shadow-lg hover:shadow-xl transition-all">
+                <div className="p-6 md:p-8 space-y-4 md:space-y-6">
+                  <h3 className="text-teal-950 font-black text-lg md:text-xl border-b pb-3">Entity Details</h3>
+                  <div className="space-y-4">
+                    <div className="hover:translate-x-1 transition-transform">
+                      <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-1">Registered Name:</p>
+                      <p className="text-teal-950 font-extrabold text-sm">Pukar Mahila Mandal</p>
+                    </div>
+                    <div className="hover:translate-x-1 transition-transform">
+                      <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-1">Status:</p>
+                      <div className="flex items-center gap-2 text-green-600 font-bold text-sm">
+                        <ShieldCheck size={16} /> 80G Certified
+                      </div>
+                    </div>
+                    <div className="hover:translate-x-1 transition-transform">
+                      <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-1">Location:</p>
+                      <p className="text-teal-950 font-extrabold text-sm">Guna, Madhya Pradesh</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          ))}
+
+            {/* RIGHT COLUMN */}
+            <div className="w-full lg:w-2/3 flex flex-col justify-between">
+              <div className="space-y-6 md:space-y-8">
+                <div className="min-h-[220px] md:min-h-[260px]">
+                  {slides.map((slide, i) => (
+                    <div key={i} className={`transition-all duration-700 ${i === currentSlide ? "block translate-y-0 opacity-100" : "hidden translate-y-4 opacity-0"}`}>
+                      <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-teal-950 tracking-tighter leading-[1.1] mb-4 md:mb-6">
+                        {slide.title.split(',')[0]} <br /> 
+                        <span className="text-[#3b82f6] italic">{slide.title.split(',')[1]}</span>
+                      </h1>
+                      {/* <p className="text-teal-900/80 text-base md:text-lg font-bold leading-relaxed max-w-xl">
+                        {slide.sub}
+                      </p> */}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-3 md:gap-4 pt-2">
+                  <Link href="/donate" className="bg-rose-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-xs md:text-sm uppercase tracking-widest flex items-center gap-2 hover:bg-rose-700 hover:scale-105 transition-all shadow-md">
+                    Support a Cause <Heart size={18} fill="white" />
+                  </Link>
+                  <Link href="/impact" className="bg-white border-2 border-teal-950 text-teal-950 px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-xs md:text-sm uppercase tracking-widest hover:bg-teal-950 hover:text-white hover:scale-105 transition-all shadow-sm">
+                    View Impact
+                  </Link>
+                </div>
+
+                <div className="pt-6 md:pt-8 border-t-2 border-[#bfdbfe]">
+                  <h4 className="text-teal-950 font-black mb-4 md:mb-6 flex items-center gap-4 text-xs md:text-sm uppercase tracking-widest">
+                    Featured Campaign <div className="h-[2px] flex-1 bg-[#bfdbfe]" />
+                  </h4>
+                  <div className="relative aspect-video rounded-2xl md:rounded-3xl overflow-hidden bg-teal-950 group cursor-pointer shadow-xl border-2 md:border-4 border-white hover:shadow-2xl transition-all">
+                    <Image src="/images/home/empowerment-of-women.jpg" alt="Video" fill className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-14 h-14 md:w-20 md:h-20 bg-rose-600 rounded-full flex items-center justify-center text-white shadow-2xl group-hover:scale-110 group-hover:bg-rose-700 transition-all">
+                        <Play size={24} className="md:w-8 md:h-8" fill="white" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* --- CAMPAIGNS BENTO GRID (unchanged) --- */}
-      <section className="py-20 bg-zinc-50">
+      {/* 2. WHAT WE DO */}
+      <section className="py-12 md:py-20 max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="space-y-6 md:space-y-8">
+            <h3 className="text-4xl md:text-6xl font-black text-teal-950 tracking-tighter hover:text-rose-600 transition-colors">What We Do.</h3>
+            <p className="text-zinc-500 text-base md:text-lg font-medium leading-relaxed">
+              We empower rural women in Guna by establishing decentralized production centers, providing legal literacy, and fostering community leadership through Federations.
+            </p>
+            <div className="grid grid-cols-2 gap-4 md:gap-6">
+              <div className="bg-white p-5 md:p-6 rounded-2xl md:rounded-3xl border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all group cursor-pointer">
+                <CheckCircle2 className="text-rose-600 mb-3 md:mb-4 group-hover:scale-110 transition-transform" size={24} />
+                <h5 className="font-black text-teal-950 text-lg md:text-xl group-hover:text-rose-600">Livelihood</h5>
+                <p className="text-[10px] md:text-xs text-zinc-400 font-bold uppercase">Fair Wages</p>
+              </div>
+              <div className="bg-white p-5 md:p-6 rounded-2xl md:rounded-3xl border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all group cursor-pointer">
+                <ShieldCheck className="text-teal-600 mb-3 md:mb-4 group-hover:scale-110 transition-transform" size={24} />
+                <h5 className="font-black text-teal-950 text-lg md:text-xl group-hover:text-teal-800">Rights</h5>
+                <p className="text-[10px] md:text-xs text-zinc-400 font-bold uppercase">Legal Aid</p>
+              </div>
+            </div>
+          </div>
+          <div className="relative aspect-square rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl group cursor-pointer">
+            <Image src="/images/home/image-3.webp" fill alt="Impact" className="object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+        </div>
+      </section>
+
+      {/* 3. OUR INSTITUTES */}
+      <section className="py-12 md:py-20 bg-white border-y">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h4 className="text-4xl md:text-5xl font-black text-teal-950 tracking-tighter mb-12 md:mb-16">Our Institutes.</h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            {["Guna Main", "Aaron Block", "Chachoda", "Raghogarh"].map((loc, i) => (
+              <div key={i} className="p-8 md:p-10 bg-zinc-50 rounded-2xl md:rounded-3xl border hover:border-rose-400 hover:shadow-xl transition-all group cursor-pointer">
+                <MapPin className="mx-auto mb-4 md:mb-6 text-blue-500 group-hover:scale-110 group-hover:text-rose-500 transition-transform" size={32} />
+                <h5 className="font-black text-teal-950 text-lg md:text-xl group-hover:text-rose-600">{loc} Center</h5>
+                <p className="text-[10px] md:text-xs font-bold text-zinc-400 uppercase mt-2">Active Hub</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. OUR CAMPAIGNS  */}
+      <section className="py-12 md:py-20 bg-zinc-50">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
-            <div className="space-y-2">
-              <h2 className="text-rose-600 font-bold text-xs uppercase tracking-[0.3em]">Urgent Appeals</h2>
-              <h3 className="text-3xl md:text-4xl font-black text-teal-950 tracking-tight">Live Campaigns</h3>
-            </div>
-            <Link href="/campaigns" className="text-teal-900 font-bold text-sm flex items-center gap-2 hover:translate-x-1 transition-transform">
-              All Campaigns <ArrowRight size={16} />
-            </Link>
-          </div>
-
+          <h4 className="text-4xl md:text-5xl font-black text-teal-950 tracking-tighter mb-10 md:mb-12">Our Campaigns.</h4>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-            <div className="md:col-span-8 group relative rounded-[2.5rem] overflow-hidden min-h-[400px] shadow-lg">
-              <Image 
-                src="/images/home/image-4.jpg" 
-                fill 
-                alt="Campaign" 
-                sizes="(max-width: 768px) 100vw, 50vw"
-                quality={85}
-                className="object-cover group-hover:scale-105 transition-transform duration-700" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-teal-950 via-teal-950/30 to-transparent" />
-              <div className="absolute bottom-0 p-8 space-y-4">
-                <span className="bg-rose-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">Goal: ₹10 Lakhs</span>
-                <h4 className="text-2xl md:text-3xl font-black text-white leading-tight">10 New Garment Training Units in Guna</h4>
-                <div className="w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
-                  <div className="w-[45%] h-full bg-rose-500" />
+            <div className="md:col-span-8 relative h-[400px] md:h-[450px] rounded-2xl md:rounded-3xl overflow-hidden group shadow-xl cursor-pointer">
+              <Image src="/images/home/image-4.jpg" fill alt="Campaign" className="object-cover group-hover:scale-105 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-teal-950 via-transparent to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10 text-white">
+                <h5 className="text-2xl md:text-3xl font-black mb-3 md:mb-4 group-hover:text-rose-400 transition-colors">10 New Garment Training Units</h5>
+                <div className="w-full h-1.5 md:h-2 bg-white/20 rounded-full overflow-hidden mb-5 md:mb-6">
+                  <div className="w-[45%] h-full bg-rose-500 group-hover:w-[50%] transition-all duration-500" />
                 </div>
-                <div className="flex justify-between items-center pt-2">
-                  <Link href="/donate" className="bg-white text-teal-950 px-6 py-3 rounded-xl font-bold text-sm hover:bg-rose-500 hover:text-white transition-all">Support Now</Link>
-                  <p className="text-white/80 text-xs font-bold tracking-widest uppercase">45% Raised</p>
-                </div>
+                <Link href="/donate" className="inline-block bg-white text-teal-950 px-6 md:px-8 py-2.5 md:py-3 rounded-xl font-black uppercase text-[10px] md:text-xs tracking-widest hover:bg-rose-600 hover:text-white hover:scale-105 transition-all">
+                  Support Now
+                </Link>
               </div>
             </div>
-
-            <div className="md:col-span-4 bg-white rounded-[2.5rem] p-8 flex flex-col justify-between border border-zinc-200 shadow-sm">
-              <div className="space-y-4">
-                <div className="w-12 h-12 bg-rose-100 rounded-xl flex items-center justify-center text-rose-600"><Megaphone size={20} /></div>
-                <h4 className="text-xl font-black text-teal-950 leading-tight">Rural Legal Literacy Camps</h4>
-                <p className="text-zinc-500 text-sm font-medium">Helping women understand their rights through village-level workshops.</p>
-              </div>
-              <Link href="/donate" className="w-full text-center py-3.5 mt-6 rounded-xl border-2 border-zinc-100 text-teal-950 font-bold hover:bg-teal-950 hover:text-white transition-all text-sm">Contribute ₹5,000</Link>
+            <div className="md:col-span-4 bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl border flex flex-col justify-between shadow-sm hover:shadow-xl transition-all group">
+              <Megaphone className="text-rose-600 mb-5 md:mb-6 group-hover:scale-110 transition-transform" size={32} />
+              <h5 className="text-xl md:text-2xl font-black text-teal-950 mb-3 md:mb-4 group-hover:text-rose-600">Rural Legal Literacy Camps</h5>
+              <p className="text-zinc-500 font-medium text-sm md:text-base mb-6 md:mb-8">Educating village women on constitutional rights and welfare schemes.</p>
+              <Link href="/donate" className="w-full py-3 md:py-4 rounded-xl border-2 border-zinc-100 text-center font-black uppercase text-[10px] md:text-xs tracking-widest hover:bg-teal-950 hover:text-white hover:border-teal-950 transition-all">
+                Contribute ₹2k
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- NEWS & PRESS --- */}
-      <section className="py-20 max-w-7xl mx-auto px-6">
-        <div className="flex items-center gap-4 mb-12">
-          <h3 className="text-2xl font-black text-teal-950 tracking-tight">Latest from <span className="text-rose-600 italic">the Field</span></h3>
-          <div className="h-px flex-1 bg-zinc-100" />
+      {/* 5. OUR IMPACT */}
+      <section className="py-12 md:py-20 bg-teal-950 text-white text-center">
+        <div className="max-w-7xl mx-auto px-6">
+          <h4 className="text-4xl md:text-6xl font-black tracking-tighter mb-12 md:mb-16">Our Impact.</h4>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            {[["2,500+", "Women"], ["50+", "Villages"], ["100%", "Fair Wage"], ["15k", "Lives"]].map(([val, lab], i) => (
+              <div key={i} className="group cursor-pointer">
+                <p className="text-4xl md:text-7xl font-black text-rose-500 italic mb-2 group-hover:scale-110 transition-transform inline-block">{val}</p>
+                <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-teal-200/50 group-hover:text-white transition-colors">{lab}</p>
+              </div>
+            ))}
+          </div>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      </section>
+
+      {/* 6. LATEST FROM THE FIELD */}
+      <section className="py-12 md:py-20 max-w-7xl mx-auto px-6">
+        <div className="flex items-center gap-4 mb-10 md:mb-12">
+          <h3 className="text-2xl md:text-3xl font-black text-teal-950 tracking-tight">Latest from <span className="text-rose-600 italic hover:text-rose-700 transition-colors">the Field</span></h3>
+          <div className="h-px flex-1 bg-zinc-200" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
           {[1,2,3].map((i) => (
             <article key={i} className="group cursor-pointer">
-              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-5">
+              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-4 md:mb-5 shadow-md group-hover:shadow-xl transition-all">
                 <Image 
                   src={`/images/home/image-5.jpg`} 
                   fill 
@@ -251,16 +319,16 @@ export default function Home() {
                   className="object-cover group-hover:scale-105 transition-transform duration-500" 
                 />
               </div>
-              <div className="space-y-3">
+              <div className="space-y-2 md:space-y-3">
                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase text-rose-600 tracking-widest">
                   <span>May 20, 2026</span>
                   <span className="w-1 h-1 rounded-full bg-zinc-300" />
                   <span>Field Report</span>
                 </div>
-                <h4 className="text-lg font-black text-teal-950 group-hover:text-rose-600 transition-colors leading-tight">
+                <h4 className="text-base md:text-lg font-black text-teal-950 group-hover:text-rose-600 transition-colors leading-tight">
                   Republic Day Honors for Area Level Federation
                 </h4>
-                <p className="text-zinc-500 text-xs md:text-sm font-medium line-clamp-2">
+                <p className="text-zinc-500 text-xs md:text-sm font-medium line-clamp-2 group-hover:text-zinc-600">
                   Recognized for 100% implementation of women welfare schemes in remote Guna blocks.
                 </p>
               </div>
@@ -269,15 +337,75 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- CTA SECTION --- */}
-      <section className="pb-20 container mx-auto px-6">
-        <div className="bg-teal-950 rounded-[3rem] p-10 md:p-20 flex flex-col items-center text-center space-y-6 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-10 opacity-5 -rotate-12"><Heart size={300} /></div>
-          <h3 className="text-3xl md:text-5xl font-black text-white leading-tight">Fuel the Movement.</h3>
-          <p className="text-teal-100/60 text-sm md:text-lg max-w-xl font-medium">Join 500+ donors who are transforming rural Guna with dignity over charity.</p>
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Link href="/donate" className="bg-rose-600 text-white px-10 py-3.5 rounded-xl font-bold text-base hover:bg-rose-700 transition-colors shadow-xl shadow-teal-950">Donate via Bank/QR</Link>
-            <Link href="/donors" className="bg-white/10 text-white px-10 py-3.5 rounded-xl font-bold text-base hover:bg-white hover:text-teal-950 transition-all border border-white/20">Our Supporters</Link>
+     
+   {/* 7. GALLERY  */}
+<section className="py-12 md:py-20 bg-white w-full">
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-10 md:mb-16">
+      <h4 className="text-3xl md:text-4xl font-black text-teal-950 tracking-tighter shrink-0">Field Gallery.</h4>
+      <div className="h-[2px] flex-1 bg-zinc-100 hidden sm:block" />
+    </div>
+  </div>
+
+  {/* Full-width grid container */}
+  <div className="w-full px-6 md:px-8">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[280px] md:auto-rows-[320px] max-w-full">
+      {/* Image 1 */}
+      <div className="md:col-span-2 md:row-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden group shadow-lg cursor-pointer">
+        <Image src="/images/home/image-3.webp" fill alt="Guna" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all" />
+      </div>
+      {/* Image 2 */}
+      <div className="md:col-span-1 relative rounded-2xl md:rounded-3xl overflow-hidden group shadow-lg cursor-pointer">
+        <Image src="/images/home/image-5.jpg" fill alt="Artisans" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all" />
+      </div>
+      {/* Video Column */}
+      <div className="md:col-span-1 rounded-2xl md:rounded-3xl overflow-hidden relative group shadow-lg cursor-pointer">
+        <Image src="/images/home/image-4.jpg" fill alt="Video thumbnail" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-all" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-14 h-14 md:w-16 md:h-16 bg-rose-600 rounded-full flex items-center justify-center text-white shadow-xl group-hover:scale-110 group-hover:bg-rose-700 transition-all">
+            <Play size={24} className="ml-1" fill="white" />
+          </div>
+        </div>
+        <div className="absolute bottom-3 left-3 right-3 bg-black/60 text-white text-xs font-bold px-2 py-1 rounded-md text-center backdrop-blur-sm">
+          Watch: Women at Work
+        </div>
+      </div>
+      {/* Image 3  */}
+      <div className="md:col-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden group shadow-lg cursor-pointer">
+        <Image src="/images/home/empowerment-of-women.jpg" fill alt="Work" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all" />
+      </div>
+    </div>
+  </div>
+</section>
+
+      {/* 9. CORE PROGRAMS ) */}
+          
+      <section className="py-12 md:py-20 bg-zinc-50 border-t">
+        <div className="max-w-7xl mx-auto px-6">
+        
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-teal-950 tracking-tighter">Core Programs</h2>
+            <div className="h-1 w-20 bg-rose-600 mx-auto rounded-full mt-4"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+            {[
+              { title: "Livelihood Units", icon: <ShoppingBag size={32} />, color: "bg-teal-50 text-teal-600", hoverColor: "hover:bg-rose-50 hover:text-rose-600" },
+              { title: "Legal Awareness", icon: <BookOpen size={32} />, color: "bg-rose-50 text-rose-600", hoverColor: "hover:bg-teal-50 hover:text-teal-600" },
+              { title: "Social Excellence", icon: <Users size={32} />, color: "bg-teal-950 text-white", hoverColor: "hover:bg-rose-600 hover:text-white" }
+            ].map((p, i) => (
+              <div key={i} className="bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl border hover:shadow-2xl hover:-translate-y-1 transition-all group cursor-pointer">
+                <div className={`w-12 h-12 md:w-14 md:h-14 ${p.color} rounded-xl md:rounded-2xl flex items-center justify-center mb-6 md:mb-8 group-hover:scale-110 transition-transform ${p.hoverColor}`}>
+                  {p.icon}
+                </div>
+                <h4 className="text-xl md:text-2xl font-black text-teal-950 mb-3 md:mb-4 group-hover:text-rose-600 transition-colors">{p.title}</h4>
+                <p className="text-zinc-500 font-medium text-sm md:text-base group-hover:text-zinc-700">Sustainable systems built by women, for women in rural Madhya Pradesh.</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

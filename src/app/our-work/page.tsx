@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { 
   Scissors, 
   Droplets, 
@@ -52,89 +52,89 @@ export default function OurWork() {
   ];
 
   return (
-    <div className="min-h-screen bg-white selection:bg-rose-100 pb-20">
-      {/* Minimalist Header – adjusted for "Our Work" */}
-      <section className="pt-20 pb-12 px-6 border-b border-zinc-100 bg-zinc-50/50">
+    <div className="min-h-screen bg-white selection:bg-rose-100 pb-12 md:pb-20">
+      {/* Header */}
+      <section className="pt-24 md:pt-32 pb-10 md:pb-12 px-6 border-b border-zinc-100 bg-zinc-50/50">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
+            <div className="space-y-3 md:space-y-4">
               <div className="flex items-center gap-2">
-                <span className="h-px w-8 bg-orange-500" />
-                <p className="text-orange-600 font-bold text-xs uppercase tracking-widest">What We Do</p>
+                <span className="h-px w-6 md:w-8 bg-orange-500" />
+                <p className="text-orange-600 font-bold text-[10px] md:text-xs uppercase tracking-widest">What We Do</p>
               </div>
-              <h1 className="text-4xl md:text-6xl font-black text-zinc-900 tracking-tight">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-zinc-900 tracking-tight">
                 Our Work <span className="text-zinc-400">&</span> Impact.
               </h1>
             </div>
-            <p className="max-w-md text-zinc-500 font-medium leading-relaxed">
+            <p className="max-w-md text-zinc-500 font-medium text-sm md:text-base leading-relaxed">
               We bridge the gap between rural talent and urban markets through structured industrial training units in Guna.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Service Blocks */}
-      <section className="px-6 py-16 md:py-24">
-        <div className="max-w-7xl mx-auto space-y-24 md:space-y-40">
+      {/* Service Blocks  */}
+      <section className="px-6 py-12 md:py-20">
+        <div className="max-w-7xl mx-auto space-y-16 md:space-y-32">
           {services.map((service, index) => (
             <div 
               key={index} 
-              className={`flex flex-col gap-12 lg:gap-20 ${index % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}
+              className={`flex flex-col gap-10 md:gap-16 lg:gap-20 ${index % 2 !== 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'}`}
             >
               {/* Image side */}
               <div className="w-full lg:w-1/2">
                 <div className="relative group">
-                  <div className={`absolute -inset-4 ${service.bg} rounded-[2rem] scale-95 group-hover:scale-100 transition-transform duration-500`} />
-                  <div className="relative aspect-[4/3] md:aspect-video lg:aspect-square overflow-hidden rounded-3xl shadow-2xl">
+                  <div className={`absolute -inset-3 md:-inset-4 ${service.bg} rounded-2xl md:rounded-[2rem] scale-95 group-hover:scale-100 transition-transform duration-500`} />
+                  <div className="relative aspect-[4/3] md:aspect-video lg:aspect-square overflow-hidden rounded-2xl md:rounded-3xl shadow-2xl">
                     <img
                       src={service.image}
                       alt={service.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
                     />
-                    <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-xl">
-                      <service.icon className={`h-6 w-6 ${service.color}`} />
+                    <div className="absolute top-4 left-4 md:top-6 md:left-6 bg-white/90 backdrop-blur-md p-2 md:p-4 rounded-xl md:rounded-2xl shadow-xl">
+                      <service.icon className={`h-5 w-5 md:h-6 md:w-6 ${service.color}`} />
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Content side */}
-              <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-8">
-                <div className="space-y-4">
-                  <h3 className="text-3xl md:text-5xl font-black text-zinc-900 leading-tight">
+              <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-5 md:space-y-8">
+                <div className="space-y-3 md:space-y-4">
+                  <h3 className="text-2xl md:text-4xl lg:text-5xl font-black text-zinc-900 leading-tight">
                     {service.title}
                   </h3>
-                  <p className="text-lg text-zinc-600 font-semibold leading-relaxed">
+                  <p className="text-base md:text-lg text-zinc-600 font-semibold leading-relaxed">
                     {service.description}
                   </p>
-                  <p className="text-zinc-500 leading-relaxed">
+                  <p className="text-sm md:text-base text-zinc-500 leading-relaxed">
                     {service.longDescription}
                   </p>
                 </div>
 
-                {/* Micro Stats */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100 flex items-center gap-3">
-                    <Users className="h-5 w-5 text-zinc-400" />
+                {/* Micro Stats  */}
+                <div className="grid grid-cols-2 gap-3 md:gap-4">
+                  <div className="p-3 md:p-4 rounded-xl md:rounded-2xl bg-zinc-50 border border-zinc-100 flex items-center gap-2 md:gap-3">
+                    <Users className="h-4 w-4 md:h-5 md:w-5 text-zinc-400" />
                     <div>
-                      <p className="text-xs font-bold text-zinc-400 uppercase">Impact</p>
-                      <p className="font-black text-zinc-900">{service.stats.beneficiaries}</p>
+                      <p className="text-[10px] md:text-xs font-bold text-zinc-400 uppercase">Impact</p>
+                      <p className="font-black text-zinc-900 text-sm md:text-base">{service.stats.beneficiaries}</p>
                     </div>
                   </div>
-                  <div className="p-4 rounded-2xl bg-zinc-50 border border-zinc-100 flex items-center gap-3">
-                    <TrendingUp className="h-5 w-5 text-zinc-400" />
+                  <div className="p-3 md:p-4 rounded-xl md:rounded-2xl bg-zinc-50 border border-zinc-100 flex items-center gap-2 md:gap-3">
+                    <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-zinc-400" />
                     <div>
-                      <p className="text-xs font-bold text-zinc-400 uppercase">Status</p>
-                      <p className="font-black text-zinc-900">{service.stats.growth}</p>
+                      <p className="text-[10px] md:text-xs font-bold text-zinc-400 uppercase">Status</p>
+                      <p className="font-black text-zinc-900 text-sm md:text-base">{service.stats.growth}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Features List */}
-                <ul className="space-y-3">
+                <ul className="space-y-2 md:space-y-3">
                   {service.features.map((feat, idx) => (
-                    <li key={idx} className="flex items-center gap-3 font-bold text-zinc-700 text-sm">
-                      <CheckCircle2 className={`h-5 w-5 ${service.color}`} />
+                    <li key={idx} className="flex items-center gap-2 md:gap-3 font-bold text-zinc-700 text-xs md:text-sm">
+                      <CheckCircle2 className={`h-4 w-4 md:h-5 md:w-5 ${service.color}`} />
                       {feat}
                     </li>
                   ))}
@@ -142,9 +142,9 @@ export default function OurWork() {
 
                 <Link 
                   href="/contact" 
-                  className="inline-flex items-center gap-2 font-black text-xs uppercase tracking-widest text-zinc-900 hover:text-orange-600 transition-colors"
+                  className="inline-flex items-center gap-1 md:gap-2 font-black text-[10px] md:text-xs uppercase tracking-widest text-zinc-900 hover:text-orange-600 transition-colors"
                 >
-                  Learn more about this unit <ArrowRight className="h-4 w-4" />
+                  Learn more about this unit <ArrowRight className="h-3 w-3 md:h-4 md:w-4" />
                 </Link>
               </div>
             </div>
@@ -152,25 +152,25 @@ export default function OurWork() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="px-6">
-        <div className="max-w-5xl mx-auto rounded-[3rem] bg-zinc-900 p-8 md:p-16 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-orange-600 rounded-full blur-[120px] opacity-20 -mr-32 -mt-32" />
+      {/* CTA Section  */}
+      <section className="px-6 pb-12 md:pb-20">
+        <div className="max-w-5xl mx-auto rounded-2xl md:rounded-[3rem] bg-zinc-900 p-6 md:p-16 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-orange-600 rounded-full blur-[80px] md:blur-[120px] opacity-20 -mr-24 -mt-24 md:-mr-32 md:-mt-32" />
           
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
-            <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight">
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 text-center md:text-left">
+            <div className="space-y-3 md:space-y-4">
+              <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight">
                 Empower Your Community.
               </h2>
-              <p className="text-zinc-400 font-medium">
+              <p className="text-zinc-400 font-medium text-sm md:text-base">
                 Enroll in our Guna training programs today.
               </p>
             </div>
             <Link 
               href="/contact"
-              className="bg-white text-zinc-900 px-8 py-4 rounded-2xl font-black hover:bg-orange-500 hover:text-white transition-all flex items-center gap-3 whitespace-nowrap"
+              className="bg-white text-zinc-900 px-6 py-3 md:px-8 md:py-4 rounded-xl md:rounded-2xl font-black text-sm md:text-base hover:bg-orange-500 hover:text-white transition-all flex items-center gap-2 whitespace-nowrap"
             >
-              Contact Us <Zap className="h-5 w-5 fill-current" />
+              Contact Us <Zap className="h-4 w-4 md:h-5 md:w-5 fill-current" />
             </Link>
           </div>
         </div>

@@ -70,7 +70,7 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         
         {/* --- HERO SECTION (reduced sizes) --- */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center mb-20 md:mb-24">
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center mb-20 md:mb-24 mt-8 md:mt-10">
           <div className="space-y-4 md:space-y-6">
             <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-rose-50 border border-rose-100">
               <span className="w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse" />
@@ -85,7 +85,7 @@ export default function About() {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 gap-5 md:gap-6">
+          <div className="grid grid-cols-1 gap-5 md:gap-6 mt-8 md:mt-10">
             <div className="group bg-zinc-50 p-6 md:p-8 rounded-2xl md:rounded-3xl border border-zinc-100 transition-all hover:bg-white hover:shadow-lg hover:shadow-zinc-200/50">
               <div className="w-12 h-12 rounded-xl bg-rose-600 text-white flex items-center justify-center mb-4 shadow-md shadow-rose-200 group-hover:scale-110 transition-transform">
                 <Target size={24} />

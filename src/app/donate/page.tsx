@@ -28,7 +28,7 @@ export default function Donate() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           
           {/* --- LEFT: IMPACT CONTEXT --- */}
-          <div className="lg:col-span-7 space-y-10">
+          <div className="lg:col-span-7 space-y-10 mt-8 md:mt-10">
             <header className="space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-rose-100 text-rose-600 rounded-full text-[10px] font-black uppercase tracking-widest">
                 <Heart size={14} fill="currentColor" /> Change a Life Today
@@ -82,7 +82,7 @@ export default function Donate() {
           </div>
 
           {/* --- RIGHT: DONATION FORM --- */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 mt-8 md:mt-10">
             <div className="bg-teal-950 rounded-[3rem] p-8 md:p-12 text-white sticky top-32 shadow-2xl shadow-teal-950/40">
               <div className="space-y-8">
                 <div className="space-y-2">

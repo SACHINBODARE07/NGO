@@ -105,7 +105,7 @@ export default function Home() {
     <div className="flex flex-col bg-zinc-50 pt-[72px] md:pt-[96px] min-h-screen">
       
       {/* Hero Carousel */}
-      <section className="relative w-full h-[80vh] md:h-[80vh] overflow-hidden mt-4 md:mt-6">
+      <section className="relative w-full h-[80vh] md:h-[80vh] overflow-hidden mt-8 md:mt-10">
         {slides.map((slide, i) => (
           <div 
             key={i} 

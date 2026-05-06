@@ -8,8 +8,12 @@ import {
   Share2,
   MessageCircle,
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
+  const whatsappNumber = "919876543210"; 
+  const message = "Hello, I want to know more about Pukar Mahila Mandal.";
+
   return (
     <footer className="bg-zinc-950 text-white pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -143,6 +147,23 @@ const Footer = () => {
           </p>
         </div>
       </div>
+
+      {/* --- Floating WhatsApp Button --- */}
+      <a
+        href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 group"
+        aria-label="Chat on WhatsApp"
+      >
+        <div className="bg-green-500 p-3 rounded-full shadow-lg hover:bg-green-600 transition-all duration-300 hover:scale-110 group-hover:shadow-xl">
+          <FaWhatsapp size={28} className="text-white" />
+        </div>
+        {/* Optional small tooltip on hover */}
+        <span className="absolute bottom-full right-0 mb-2 px-2 py-1 text-xs font-bold text-white bg-zinc-800 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+          Need help? Chat with us
+        </span>
+      </a>
     </footer>
   );
 };

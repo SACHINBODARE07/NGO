@@ -97,7 +97,7 @@ export default function OurWork() {
     <div className="min-h-screen bg-white selection:bg-rose-100 pb-12 md:pb-20">
       
       {/* Header */}
-      <section className="pt-24 md:pt-32 pb-10 md:pb-12 px-6 border-b border-zinc-100 bg-zinc-50/50">
+      <section className="pt-24 md:pt-32 pb-10 md:pb-12 px-6 border-b border-zinc-100 bg-zinc-50/50 mt-8 md:mt-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
             <div className="space-y-3 md:space-y-4">

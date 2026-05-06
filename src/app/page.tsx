@@ -7,30 +7,83 @@ import {
   Play, Calendar, Tag, User, 
   ArrowRight, Heart, ShieldCheck, CheckCircle2, Star,
   ShoppingBag, BookOpen, Users, MapPin, BarChart3, Image as ImageIcon,
-  ChevronRight, Target, Zap, Info, Megaphone
+  ChevronRight, Target, Zap, Info, Megaphone, Award, GraduationCap, Trophy
 } from "lucide-react";
 
-// --- Carousel Content ---
+// --- Hero Carousel Content  ---
 const slides = [
   { 
-    image: "/images/home/Fashion-Design-blog.jpg", 
-    title: "Empowering Rural Women, Changing Lives.", 
-    // sub: "Pukar Mahila Mandal (Reg: 02/40/01/21798/17) is a grassroots movement in Guna, dedicated to sustainable livelihood since 2017." 
-  },
-  { 
-    image: "/images/home/image-8.webp", 
-    title: "Economic Freedom Through Skill Training.", 
-    // sub: "Establishing decentralized garment units to ensure rural women earn with dignity from their own villages." 
+    image: "/first.png", 
+    title: "Empowering Rural Women, Changing Lives.",
   },
   { 
     image: "/images/home/Fashion-Design-blog.jpg", 
-    title: "Legal Literacy and Social Excellence.", 
-    // sub: "Bridging the gap between government welfare schemes and the women who need them most through education." 
+    title: "Economic Freedom Through Skill Training.",
   },
+  { 
+    image: "/images/services/Garment_Manufacturing.webp", 
+    title: "Legal Literacy and Social Excellence.",
+  },
+  { 
+    image: "/images/home/image-4.jpg", 
+    title: "Sustainable Livelihoods Since 2017.",
+  },
+  { 
+    image: "/images/home/image-7.jpg", 
+    title: "Building Self-Reliant Communities.",
+  },
+];
+
+// --- Campaigns Carousel Content ---
+const campaigns = [
+  {
+    title: "10 New Garment Training Units",
+    goal: "Goal: ₹10 Lakhs",
+    raised: "45%",
+    image: "/images/home/image-4.jpg",
+    link: "/donate",
+  },
+  {
+    title: "Rural Legal Literacy Camps",
+    goal: "Goal: ₹5 Lakhs",
+    raised: "30%",
+    image: "/images/home/empowerment-of-women.jpg",
+    link: "/donate",
+  },
+  {
+    title: "Herbal Soap Expansion",
+    goal: "Goal: ₹3 Lakhs",
+    raised: "60%",
+    image: "/images/home/image-5.jpg",
+    link: "/donate",
+  },
+  {
+    title: "Women's Safety Workshops",
+    goal: "Goal: ₹2 Lakhs",
+    raised: "75%",
+    image: "/images/home/image-3.webp",
+    link: "/donate",
+  },
+  {
+    title: "Digital Literacy for SHGs",
+    goal: "Goal: ₹4 Lakhs",
+    raised: "20%",
+    image: "/images/home/image-4.jpg",
+    link: "/donate",
+  },
+];
+
+// --- Awards & Achievements Data ---
+const awards = [
+  { title: "Republic Day Award", year: "2024", desc: "Recognized for outstanding social service in Guna district.", icon: Trophy },
+  { title: "NITI Aayog Verified", year: "2024", desc: "Registered under Darpan Portal with unique ID.", icon: Award },
+  { title: "CSR Excellence", year: "2023", desc: "Best grassroots NGO for women empowerment.", icon: Star },
+  { title: "Financial Inclusion Champion", year: "2023", desc: "100% SHG bank linkage achievement.", icon: Target },
 ];
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentCampaign, setCurrentCampaign] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -38,6 +91,15 @@ export default function Home() {
     }, 5000);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentCampaign((prev) => (prev + 1) % campaigns.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const goToCampaign = (index: number) => setCurrentCampaign(index);
 
   return (
     <div className="flex flex-col bg-zinc-50 pt-[72px] md:pt-[96px] min-h-screen">
@@ -60,7 +122,6 @@ export default function Home() {
               priority={i === 0}
               className="object-cover"
             />
-            {/* Dark overlay for better text contrast */}
             <div className="absolute inset-0 bg-black/40" />
             <div className="absolute inset-0 bg-gradient-to-r from-teal-950/70 via-teal-950/30 to-transparent" />
             <div className="relative h-full max-w-7xl mx-auto px-6 md:px-8 flex flex-col justify-center items-start space-y-4 md:space-y-6">
@@ -71,18 +132,12 @@ export default function Home() {
                 </span>
                 Registered NGO: Guna, Madhya Pradesh
               </span>
-
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight max-w-3xl drop-shadow-lg">
                 {slide.title}
               </h1>
-              
-              {/* <p className="text-white/90 text-sm md:text-base max-w-xl font-medium leading-relaxed drop-shadow">
-                {slide.sub}
-              </p> */}
             </div>
           </div>
         ))}
-        
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
           {slides.map((_, i) => (
             <button
@@ -96,7 +151,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trust Bar  */}
+      {/* Trust Bar */}
       <section className="py-8 bg-white border-b border-zinc-100">
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
           {[
@@ -128,9 +183,7 @@ export default function Home() {
               </span>
             ))}
           </div>
-
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
-            {/* LEFT COLUMN */}
             <div className="w-full lg:w-1/3 space-y-6">
               <div className="relative aspect-[4/5] rounded-2xl md:rounded-3xl lg:rounded-[2.5rem] overflow-hidden border-4 border-white shadow-2xl group">
                 {slides.map((slide, i) => (
@@ -143,7 +196,6 @@ export default function Home() {
                   />
                 ))}
               </div>
-
               <div className="bg-white rounded-2xl md:rounded-3xl lg:rounded-[2.5rem] border-4 border-[#3b82f6] overflow-hidden shadow-lg hover:shadow-xl transition-all">
                 <div className="p-6 md:p-8 space-y-4 md:space-y-6">
                   <h3 className="text-teal-950 font-black text-lg md:text-xl border-b pb-3">Entity Details</h3>
@@ -166,8 +218,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
-            {/* RIGHT COLUMN */}
             <div className="w-full lg:w-2/3 flex flex-col justify-between">
               <div className="space-y-6 md:space-y-8">
                 <div className="min-h-[220px] md:min-h-[260px]">
@@ -175,15 +225,11 @@ export default function Home() {
                     <div key={i} className={`transition-all duration-700 ${i === currentSlide ? "block translate-y-0 opacity-100" : "hidden translate-y-4 opacity-0"}`}>
                       <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-teal-950 tracking-tighter leading-[1.1] mb-4 md:mb-6">
                         {slide.title.split(',')[0]} <br /> 
-                        <span className="text-[#3b82f6] italic">{slide.title.split(',')[1]}</span>
+                        <span className="text-[#3b82f6] italic">{slide.title.split(',')[1] || "Transforming Lives"}</span>
                       </h1>
-                      {/* <p className="text-teal-900/80 text-base md:text-lg font-bold leading-relaxed max-w-xl">
-                        {slide.sub}
-                      </p> */}
                     </div>
                   ))}
                 </div>
-
                 <div className="flex flex-wrap gap-3 md:gap-4 pt-2">
                   <Link href="/donate" className="bg-rose-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl font-black text-xs md:text-sm uppercase tracking-widest flex items-center gap-2 hover:bg-rose-700 hover:scale-105 transition-all shadow-md">
                     Support a Cause <Heart size={18} fill="white" />
@@ -192,7 +238,6 @@ export default function Home() {
                     View Impact
                   </Link>
                 </div>
-
                 <div className="pt-6 md:pt-8 border-t-2 border-[#bfdbfe]">
                   <h4 className="text-teal-950 font-black mb-4 md:mb-6 flex items-center gap-4 text-xs md:text-sm uppercase tracking-widest">
                     Featured Campaign <div className="h-[2px] flex-1 bg-[#bfdbfe]" />
@@ -239,48 +284,78 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. OUR INSTITUTES */}
+      {/* 3. OUR INSTITUTES (with background images) */}
       <section className="py-12 md:py-20 bg-white border-y">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h4 className="text-4xl md:text-5xl font-black text-teal-950 tracking-tighter mb-12 md:mb-16">Our Institutes.</h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {["Guna Main", "Aaron Block", "Chachoda", "Raghogarh"].map((loc, i) => (
-              <div key={i} className="p-8 md:p-10 bg-zinc-50 rounded-2xl md:rounded-3xl border hover:border-rose-400 hover:shadow-xl transition-all group cursor-pointer">
-                <MapPin className="mx-auto mb-4 md:mb-6 text-blue-500 group-hover:scale-110 group-hover:text-rose-500 transition-transform" size={32} />
-                <h5 className="font-black text-teal-950 text-lg md:text-xl group-hover:text-rose-600">{loc} Center</h5>
-                <p className="text-[10px] md:text-xs font-bold text-zinc-400 uppercase mt-2">Active Hub</p>
+            {[
+              { name: "Guna Main", bg: "/images/home/image-3.webp" },
+              { name: "Aaron Block", bg: "/images/home/empowerment-of-women.jpg" },
+              { name: "Chachoda", bg: "/images/home/image-4.jpg" },
+              { name: "Raghogarh", bg: "/images/home/image-5.jpg" },
+            ].map((loc, i) => (
+              <div key={i} className="relative group rounded-2xl md:rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all cursor-pointer min-h-[280px]">
+                <Image src={loc.bg} alt={loc.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-teal-950/80 via-teal-950/40 to-transparent" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center">
+                  <MapPin className="mb-3 text-rose-400 group-hover:scale-110 transition-transform" size={32} />
+                  <h5 className="font-black text-xl md:text-2xl group-hover:text-rose-300 transition-colors">{loc.name} Center</h5>
+                  <p className="text-[10px] md:text-xs font-bold uppercase tracking-wider text-teal-200 mt-2">Active Hub</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 4. OUR CAMPAIGNS  */}
+      {/* 4. OUR CAMPAIGNS CAROUSEL */}
       <section className="py-12 md:py-20 bg-zinc-50">
         <div className="max-w-7xl mx-auto px-6">
-          <h4 className="text-4xl md:text-5xl font-black text-teal-950 tracking-tighter mb-10 md:mb-12">Our Campaigns.</h4>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-            <div className="md:col-span-8 relative h-[400px] md:h-[450px] rounded-2xl md:rounded-3xl overflow-hidden group shadow-xl cursor-pointer">
-              <Image src="/images/home/image-4.jpg" fill alt="Campaign" className="object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-t from-teal-950 via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10 text-white">
-                <h5 className="text-2xl md:text-3xl font-black mb-3 md:mb-4 group-hover:text-rose-400 transition-colors">10 New Garment Training Units</h5>
-                <div className="w-full h-1.5 md:h-2 bg-white/20 rounded-full overflow-hidden mb-5 md:mb-6">
-                  <div className="w-[45%] h-full bg-rose-500 group-hover:w-[50%] transition-all duration-500" />
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8 md:mb-12">
+            <h4 className="text-4xl md:text-5xl font-black text-teal-950 tracking-tighter">Our Campaigns.</h4>
+            <div className="flex gap-2">
+              {campaigns.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => goToCampaign(idx)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentCampaign ? "w-8 bg-rose-600" : "w-2 bg-zinc-300 hover:bg-rose-300"}`}
+                />
+              ))}
+            </div>
+          </div>
+          
+          <div className="relative">
+            {campaigns.map((camp, idx) => (
+              <div
+                key={idx}
+                className={`transition-all duration-700 ${idx === currentCampaign ? "block opacity-100" : "hidden opacity-0"}`}
+              >
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                  <div className="md:col-span-8 relative h-[400px] md:h-[450px] rounded-2xl md:rounded-3xl overflow-hidden group shadow-xl cursor-pointer">
+                    <Image src={camp.image} fill alt={camp.title} className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-teal-950 via-transparent to-transparent" />
+                    <div className="absolute bottom-6 left-6 right-6 md:bottom-10 md:left-10 md:right-10 text-white">
+                      <h5 className="text-2xl md:text-3xl font-black mb-3 md:mb-4 group-hover:text-rose-400 transition-colors">{camp.title}</h5>
+                      <div className="w-full h-1.5 md:h-2 bg-white/20 rounded-full overflow-hidden mb-5 md:mb-6">
+                        <div className="h-full bg-rose-500 transition-all duration-500" style={{ width: camp.raised }} />
+                      </div>
+                      <Link href={camp.link} className="inline-block bg-white text-teal-950 px-6 md:px-8 py-2.5 md:py-3 rounded-xl font-black uppercase text-[10px] md:text-xs tracking-widest hover:bg-rose-600 hover:text-white hover:scale-105 transition-all">
+                        Support Now
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="md:col-span-4 bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl border flex flex-col justify-between shadow-sm hover:shadow-xl transition-all group">
+                    <Megaphone className="text-rose-600 mb-5 md:mb-6 group-hover:scale-110 transition-transform" size={32} />
+                    <h5 className="text-xl md:text-2xl font-black text-teal-950 mb-3 md:mb-4 group-hover:text-rose-600">{camp.title}</h5>
+                    <p className="text-zinc-500 font-medium text-sm md:text-base mb-6 md:mb-8">{camp.goal}</p>
+                    <Link href="/donate" className="w-full py-3 md:py-4 rounded-xl border-2 border-zinc-100 text-center font-black uppercase text-[10px] md:text-xs tracking-widest hover:bg-teal-950 hover:text-white hover:border-teal-950 transition-all">
+                      Contribute Now
+                    </Link>
+                  </div>
                 </div>
-                <Link href="/donate" className="inline-block bg-white text-teal-950 px-6 md:px-8 py-2.5 md:py-3 rounded-xl font-black uppercase text-[10px] md:text-xs tracking-widest hover:bg-rose-600 hover:text-white hover:scale-105 transition-all">
-                  Support Now
-                </Link>
               </div>
-            </div>
-            <div className="md:col-span-4 bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl border flex flex-col justify-between shadow-sm hover:shadow-xl transition-all group">
-              <Megaphone className="text-rose-600 mb-5 md:mb-6 group-hover:scale-110 transition-transform" size={32} />
-              <h5 className="text-xl md:text-2xl font-black text-teal-950 mb-3 md:mb-4 group-hover:text-rose-600">Rural Legal Literacy Camps</h5>
-              <p className="text-zinc-500 font-medium text-sm md:text-base mb-6 md:mb-8">Educating village women on constitutional rights and welfare schemes.</p>
-              <Link href="/donate" className="w-full py-3 md:py-4 rounded-xl border-2 border-zinc-100 text-center font-black uppercase text-[10px] md:text-xs tracking-widest hover:bg-teal-950 hover:text-white hover:border-teal-950 transition-all">
-                Contribute ₹2k
-              </Link>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -300,7 +375,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. LATEST FROM THE FIELD */}
+      {/* 6. AWARDS & ACHIEVEMENTS */}
+      <section className="py-12 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-12 md:mb-16">
+            <h3 className="text-4xl md:text-5xl font-black text-teal-950 tracking-tighter">Awards & Achievements</h3>
+            <div className="h-1 w-20 bg-rose-600 mx-auto rounded-full mt-4"></div>
+            <p className="text-zinc-500 mt-4 max-w-2xl mx-auto">Recognitions that reflect our commitment to rural empowerment and transparency.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {awards.map((award, idx) => (
+              <div key={idx} className="bg-zinc-50 p-6 md:p-8 rounded-2xl md:rounded-3xl border hover:border-rose-400 hover:shadow-xl transition-all group cursor-pointer text-center">
+                <div className="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-rose-600 transition-colors">
+                  <award.icon className="w-8 h-8 text-rose-600 group-hover:text-white transition-colors" />
+                </div>
+                <h4 className="text-xl md:text-2xl font-black text-teal-950 mb-2 group-hover:text-rose-600 transition-colors">{award.title}</h4>
+                <p className="text-rose-600 font-bold text-sm mb-2">{award.year}</p>
+                <p className="text-zinc-500 text-sm leading-relaxed">{award.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. LATEST FROM THE FIELD */}
       <section className="py-12 md:py-20 max-w-7xl mx-auto px-6">
         <div className="flex items-center gap-4 mb-10 md:mb-12">
           <h3 className="text-2xl md:text-3xl font-black text-teal-950 tracking-tight">Latest from <span className="text-rose-600 italic hover:text-rose-700 transition-colors">the Field</span></h3>
@@ -337,61 +435,51 @@ export default function Home() {
         </div>
       </section>
 
-     
-   {/* 7. GALLERY  */}
-<section className="py-12 md:py-20 bg-white w-full">
-  <div className="max-w-7xl mx-auto px-6">
-    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-10 md:mb-16">
-      <h4 className="text-3xl md:text-4xl font-black text-teal-950 tracking-tighter shrink-0">Field Gallery.</h4>
-      <div className="h-[2px] flex-1 bg-zinc-100 hidden sm:block" />
-    </div>
-  </div>
-
-  {/* Full-width grid container */}
-  <div className="w-full px-6 md:px-8">
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[280px] md:auto-rows-[320px] max-w-full">
-      {/* Image 1 */}
-      <div className="md:col-span-2 md:row-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden group shadow-lg cursor-pointer">
-        <Image src="/images/home/image-3.webp" fill alt="Guna" className="object-cover group-hover:scale-110 transition-transform duration-700" />
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all" />
-      </div>
-      {/* Image 2 */}
-      <div className="md:col-span-1 relative rounded-2xl md:rounded-3xl overflow-hidden group shadow-lg cursor-pointer">
-        <Image src="/images/home/image-5.jpg" fill alt="Artisans" className="object-cover group-hover:scale-110 transition-transform duration-700" />
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all" />
-      </div>
-      {/* Video Column */}
-      <div className="md:col-span-1 rounded-2xl md:rounded-3xl overflow-hidden relative group shadow-lg cursor-pointer">
-        <Image src="/images/home/image-4.jpg" fill alt="Video thumbnail" className="object-cover group-hover:scale-105 transition-transform duration-500" />
-        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-all" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-14 h-14 md:w-16 md:h-16 bg-rose-600 rounded-full flex items-center justify-center text-white shadow-xl group-hover:scale-110 group-hover:bg-rose-700 transition-all">
-            <Play size={24} className="ml-1" fill="white" />
+      {/* 8. GALLERY */}
+      <section className="py-12 md:py-20 bg-white w-full">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-10 md:mb-16">
+            <h4 className="text-3xl md:text-4xl font-black text-teal-950 tracking-tighter shrink-0">Field Gallery.</h4>
+            <div className="h-[2px] flex-1 bg-zinc-100 hidden sm:block" />
           </div>
         </div>
-        <div className="absolute bottom-3 left-3 right-3 bg-black/60 text-white text-xs font-bold px-2 py-1 rounded-md text-center backdrop-blur-sm">
-          Watch: Women at Work
+        <div className="w-full px-6 md:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[280px] md:auto-rows-[320px] max-w-full">
+            <div className="md:col-span-2 md:row-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden group shadow-lg cursor-pointer">
+              <Image src="/images/home/image-3.webp" fill alt="Guna" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all" />
+            </div>
+            <div className="md:col-span-1 relative rounded-2xl md:rounded-3xl overflow-hidden group shadow-lg cursor-pointer">
+              <Image src="/images/home/image-5.jpg" fill alt="Artisans" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all" />
+            </div>
+            <div className="md:col-span-1 rounded-2xl md:rounded-3xl overflow-hidden relative group shadow-lg cursor-pointer">
+              <Image src="/images/home/image-4.jpg" fill alt="Video thumbnail" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-all" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-14 h-14 md:w-16 md:h-16 bg-rose-600 rounded-full flex items-center justify-center text-white shadow-xl group-hover:scale-110 group-hover:bg-rose-700 transition-all">
+                  <Play size={24} className="ml-1" fill="white" />
+                </div>
+              </div>
+              <div className="absolute bottom-3 left-3 right-3 bg-black/60 text-white text-xs font-bold px-2 py-1 rounded-md text-center backdrop-blur-sm">
+                Watch: Women at Work
+              </div>
+            </div>
+            <div className="md:col-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden group shadow-lg cursor-pointer">
+              <Image src="/images/home/empowerment-of-women.jpg" fill alt="Work" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all" />
+            </div>
+          </div>
         </div>
-      </div>
-      {/* Image 3  */}
-      <div className="md:col-span-2 relative rounded-2xl md:rounded-3xl overflow-hidden group shadow-lg cursor-pointer">
-        <Image src="/images/home/empowerment-of-women.jpg" fill alt="Work" className="object-cover group-hover:scale-110 transition-transform duration-700" />
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all" />
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
-      {/* 9. CORE PROGRAMS ) */}
-          
+      {/* 9. CORE PROGRAMS */}
       <section className="py-12 md:py-20 bg-zinc-50 border-t">
         <div className="max-w-7xl mx-auto px-6">
-        
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-teal-950 tracking-tighter">Core Programs</h2>
             <div className="h-1 w-20 bg-rose-600 mx-auto rounded-full mt-4"></div>
           </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
             {[
               { title: "Livelihood Units", icon: <ShoppingBag size={32} />, color: "bg-teal-50 text-teal-600", hoverColor: "hover:bg-rose-50 hover:text-rose-600" },

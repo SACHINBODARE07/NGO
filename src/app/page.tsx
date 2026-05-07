@@ -3,8 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { 
-  Play, Calendar, Tag, User, 
+import {
+  Play, Calendar, Tag, User,
   ArrowRight, Heart, ShieldCheck, CheckCircle2, Star,
   ShoppingBag, BookOpen, Users, MapPin, BarChart3, Image as ImageIcon,
   ChevronRight, Target, Zap, Info, Megaphone, Award, GraduationCap, Trophy
@@ -12,24 +12,24 @@ import {
 
 // --- Hero Carousel Content  ---
 const slides = [
-  { 
-    image: "/first.png", 
+  {
+    image: "/first.png",
     title: "Empowering Rural Women, Changing Lives.",
   },
-  { 
-    image: "/images/home/Fashion-Design-blog.jpg", 
+  {
+    image: "/images/home/Fashion-Design-blog.jpg",
     title: "Economic Freedom Through Skill Training.",
   },
-  { 
-    image: "/images/services/Garment_Manufacturing.webp", 
+  {
+    image: "/images/services/Garment_Manufacturing.webp",
     title: "Legal Literacy and Social Excellence.",
   },
-  { 
-    image: "/images/home/image-4.jpg", 
+  {
+    image: "/images/home/image-4.jpg",
     title: "Sustainable Livelihoods Since 2017.",
   },
-  { 
-    image: "/images/home/image-7.jpg", 
+  {
+    image: "/images/home/image-7.jpg",
     title: "Building Self-Reliant Communities.",
   },
 ];
@@ -102,16 +102,15 @@ export default function Home() {
   const goToCampaign = (index: number) => setCurrentCampaign(index);
 
   return (
-    <div className="flex flex-col bg-zinc-50 pt-[72px] md:pt-[96px] min-h-screen">
-      
+    <div className="flex flex-col bg-zinc-50 dark:bg-slate-950 pt-[48px] md:pt-[72px] min-h-screen">
+
       {/* Hero Carousel */}
-      <section className="relative w-full h-[80vh] md:h-[80vh] overflow-hidden mt-8 md:mt-10">
+      <section className="relative w-full h-[80vh] md:h-[80vh] overflow-hidden mt-0">
         {slides.map((slide, i) => (
-          <div 
-            key={i} 
-            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-              i === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105"
-            }`}
+          <div
+            key={i}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${i === currentSlide ? "opacity-100" : "opacity-0"
+              }`}
           >
             <Image
               src={slide.image}
@@ -122,8 +121,7 @@ export default function Home() {
               priority={i === 0}
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-black/40" />
-            <div className="absolute inset-0 bg-gradient-to-r from-teal-950/70 via-teal-950/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             <div className="relative h-full max-w-7xl mx-auto px-6 md:px-8 flex flex-col justify-center items-start space-y-4 md:space-y-6">
               <span className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider hover:bg-white/20 transition-all">
                 <span className="relative flex h-1.5 w-1.5">
@@ -143,16 +141,15 @@ export default function Home() {
             <button
               key={i}
               onClick={() => setCurrentSlide(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 hover:scale-125 ${
-                i === currentSlide ? "w-8 bg-rose-500" : "w-2 bg-white/50 hover:bg-white"
-              }`}
+              className={`h-1.5 rounded-full transition-all duration-300 hover:scale-125 ${i === currentSlide ? "w-8 bg-rose-500" : "w-2 bg-white/50 hover:bg-white"
+                }`}
             />
           ))}
         </div>
       </section>
 
       {/* Trust Bar */}
-      <section className="py-8 bg-white border-b border-zinc-100">
+      <section className="py-8 bg-white dark:bg-slate-900 border-b border-zinc-100 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             { t: "80G Certified", d: "Tax Benefits", i: ShieldCheck },
@@ -175,7 +172,7 @@ export default function Home() {
 
       {/* 1. DYNAMIC RESOURCE HERO SECTION */}
       <section className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-10 w-full">
-        <div className="bg-[#dbeafe] rounded-2xl md:rounded-3xl lg:rounded-[3rem] p-5 md:p-8 lg:p-10 border-2 border-[#bfdbfe] shadow-sm hover:shadow-xl transition-all duration-500">
+        <div className="bg-[#dbeafe] dark:bg-slate-900 rounded-2xl md:rounded-3xl lg:rounded-[3rem] p-5 md:p-8 lg:p-10 border-2 border-[#bfdbfe] dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-500">
           <div className="flex gap-2 mb-6 md:mb-8">
             {["home", "resources", "videos"].map((tab) => (
               <span key={tab} className="px-3 md:px-4 py-1 bg-zinc-600 text-white text-[10px] font-bold rounded-full uppercase tracking-widest cursor-default hover:bg-rose-600 transition-colors">
@@ -187,18 +184,18 @@ export default function Home() {
             <div className="w-full lg:w-1/3 space-y-6">
               <div className="relative aspect-[4/5] rounded-2xl md:rounded-3xl lg:rounded-[2.5rem] overflow-hidden border-4 border-white shadow-2xl group">
                 {slides.map((slide, i) => (
-                  <Image 
+                  <Image
                     key={i}
-                    src={slide.image} 
-                    alt="Spotlight" 
-                    fill 
+                    src={slide.image}
+                    alt="Spotlight"
+                    fill
                     className={`object-cover transition-opacity duration-1000 group-hover:scale-105 ${i === currentSlide ? "opacity-100" : "opacity-0"}`}
                   />
                 ))}
               </div>
-              <div className="bg-white rounded-2xl md:rounded-3xl lg:rounded-[2.5rem] border-4 border-[#3b82f6] overflow-hidden shadow-lg hover:shadow-xl transition-all">
+              <div className="bg-white dark:bg-slate-800 rounded-2xl md:rounded-3xl lg:rounded-[2.5rem] border-4 border-[#3b82f6] dark:border-slate-700 overflow-hidden shadow-lg hover:shadow-xl transition-all">
                 <div className="p-6 md:p-8 space-y-4 md:space-y-6">
-                  <h3 className="text-teal-950 font-black text-lg md:text-xl border-b pb-3">Entity Details</h3>
+                  <h3 className="text-teal-950 dark:text-slate-100 font-black text-lg md:text-xl border-b dark:border-slate-700 pb-3">Entity Details</h3>
                   <div className="space-y-4">
                     <div className="hover:translate-x-1 transition-transform">
                       <p className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-1">Registered Name:</p>
@@ -224,7 +221,7 @@ export default function Home() {
                   {slides.map((slide, i) => (
                     <div key={i} className={`transition-all duration-700 ${i === currentSlide ? "block translate-y-0 opacity-100" : "hidden translate-y-4 opacity-0"}`}>
                       <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-teal-950 tracking-tighter leading-[1.1] mb-4 md:mb-6">
-                        {slide.title.split(',')[0]} <br /> 
+                        {slide.title.split(',')[0]} <br />
                         <span className="text-[#3b82f6] italic">{slide.title.split(',')[1] || "Transforming Lives"}</span>
                       </h1>
                     </div>
@@ -261,8 +258,8 @@ export default function Home() {
       <section className="py-12 md:py-20 max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="space-y-6 md:space-y-8">
-            <h3 className="text-4xl md:text-6xl font-black text-teal-950 tracking-tighter hover:text-rose-600 transition-colors">What We Do.</h3>
-            <p className="text-zinc-500 text-base md:text-lg font-medium leading-relaxed">
+            <h3 className="text-4xl md:text-6xl font-black text-teal-950 dark:text-slate-100 tracking-tighter hover:text-rose-600 transition-colors">What We Do.</h3>
+            <p className="text-zinc-500 dark:text-slate-400 text-base md:text-lg font-medium leading-relaxed">
               We empower rural women in Guna by establishing decentralized production centers, providing legal literacy, and fostering community leadership through Federations.
             </p>
             <div className="grid grid-cols-2 gap-4 md:gap-6">
@@ -285,9 +282,9 @@ export default function Home() {
       </section>
 
       {/* 3. OUR INSTITUTES (with background images) */}
-      <section className="py-12 md:py-20 bg-white border-y">
+      <section className="py-12 md:py-20 bg-white dark:bg-slate-900 border-y dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h4 className="text-4xl md:text-5xl font-black text-teal-950 tracking-tighter mb-12 md:mb-16">Our Institutes.</h4>
+          <h4 className="text-4xl md:text-5xl font-black text-teal-950 dark:text-slate-100 tracking-tighter mb-12 md:mb-16">Our Institutes.</h4>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {[
               { name: "Guna Main", bg: "/images/home/image-3.webp" },
@@ -310,10 +307,10 @@ export default function Home() {
       </section>
 
       {/* 4. OUR CAMPAIGNS CAROUSEL */}
-      <section className="py-12 md:py-20 bg-zinc-50">
+      <section className="py-12 md:py-20 bg-zinc-50 dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8 md:mb-12">
-            <h4 className="text-4xl md:text-5xl font-black text-teal-950 tracking-tighter">Our Campaigns.</h4>
+            <h4 className="text-4xl md:text-5xl font-black text-teal-950 dark:text-slate-100 tracking-tighter">Our Campaigns.</h4>
             <div className="flex gap-2">
               {campaigns.map((_, idx) => (
                 <button
@@ -324,7 +321,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-          
+
           <div className="relative">
             {campaigns.map((camp, idx) => (
               <div
@@ -345,11 +342,11 @@ export default function Home() {
                       </Link>
                     </div>
                   </div>
-                  <div className="md:col-span-4 bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl border flex flex-col justify-between shadow-sm hover:shadow-xl transition-all group">
+                  <div className="md:col-span-4 bg-white dark:bg-slate-900 p-6 md:p-10 rounded-2xl md:rounded-3xl border dark:border-slate-800 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all group">
                     <Megaphone className="text-rose-600 mb-5 md:mb-6 group-hover:scale-110 transition-transform" size={32} />
-                    <h5 className="text-xl md:text-2xl font-black text-teal-950 mb-3 md:mb-4 group-hover:text-rose-600">{camp.title}</h5>
-                    <p className="text-zinc-500 font-medium text-sm md:text-base mb-6 md:mb-8">{camp.goal}</p>
-                    <Link href="/donate" className="w-full py-3 md:py-4 rounded-xl border-2 border-zinc-100 text-center font-black uppercase text-[10px] md:text-xs tracking-widest hover:bg-teal-950 hover:text-white hover:border-teal-950 transition-all">
+                    <h5 className="text-xl md:text-2xl font-black text-teal-950 dark:text-slate-100 mb-3 md:mb-4 group-hover:text-rose-600">{camp.title}</h5>
+                    <p className="text-zinc-500 dark:text-slate-400 font-medium text-sm md:text-base mb-6 md:mb-8">{camp.goal}</p>
+                    <Link href="/donate" className="w-full py-3 md:py-4 rounded-xl border-2 border-zinc-100 dark:border-slate-800 text-center font-black uppercase text-[10px] md:text-xs tracking-widest hover:bg-teal-950 hover:text-white hover:border-teal-950 transition-all">
                       Contribute Now
                     </Link>
                   </div>
@@ -376,10 +373,10 @@ export default function Home() {
       </section>
 
       {/* 6. AWARDS & ACHIEVEMENTS */}
-      <section className="py-12 md:py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12 md:mb-16">
-            <h3 className="text-4xl md:text-5xl font-black text-teal-950 tracking-tighter">Awards & Achievements</h3>
+            <h3 className="text-4xl md:text-5xl font-black text-teal-950 dark:text-slate-100 tracking-tighter">Awards & Achievements</h3>
             <div className="h-1 w-20 bg-rose-600 mx-auto rounded-full mt-4"></div>
             <p className="text-zinc-500 mt-4 max-w-2xl mx-auto">Recognitions that reflect our commitment to rural empowerment and transparency.</p>
           </div>
@@ -405,16 +402,16 @@ export default function Home() {
           <div className="h-px flex-1 bg-zinc-200" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          {[1,2,3].map((i) => (
+          {[1, 2, 3].map((i) => (
             <article key={i} className="group cursor-pointer">
               <div className="relative aspect-[16/10] rounded-2xl overflow-hidden mb-4 md:mb-5 shadow-md group-hover:shadow-xl transition-all">
-                <Image 
-                  src={`/images/home/image-5.jpg`} 
-                  fill 
-                  alt="News" 
+                <Image
+                  src={`/images/home/image-5.jpg`}
+                  fill
+                  alt="News"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   quality={80}
-                  className="object-cover group-hover:scale-105 transition-transform duration-500" 
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="space-y-2 md:space-y-3">
@@ -436,7 +433,7 @@ export default function Home() {
       </section>
 
       {/* 8. GALLERY */}
-      <section className="py-12 md:py-20 bg-white w-full">
+      <section className="py-12 md:py-20 bg-white dark:bg-slate-900 w-full">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-10 md:mb-16">
             <h4 className="text-3xl md:text-4xl font-black text-teal-950 tracking-tighter shrink-0">Field Gallery.</h4>
@@ -474,7 +471,7 @@ export default function Home() {
       </section>
 
       {/* 9. CORE PROGRAMS */}
-      <section className="py-12 md:py-20 bg-zinc-50 border-t">
+      <section className="py-12 md:py-20 bg-zinc-50 dark:bg-slate-950 border-t dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-teal-950 tracking-tighter">Core Programs</h2>
